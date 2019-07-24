@@ -1,0 +1,26 @@
+This archive contains an Ambika firmware with an additional 'All Controller Request' or 'Data Request' SysEx feature.
+This firmware notably enables a Behringer BCR2000 (or BCF2000) to control and be updated by the Ambika when swapping presets on the BCR, using the following setup:
+
+	Keyboard midi out -> MidiMerge in 1
+	BCR midi out -> MidiMerge in 2
+
+	MidiMerge out -> Ambika midi in
+	Ambika midi out -> BCR midi in
+
+When swapping presets using the preset arrows on the Berhinger, the BCR will automatically send the 'All Controller Request' SysEx. Upon receiving this SysEx, the Ambika sends all CCs corresponding to a part number (or the current part on the Ambika if not specified) on the midi channel of this part. The BCR will then be updated with the current values of the Ambika for that part.
+
+The specific firmware (Ambika-AllCC-Firmware.bin) should be uploaded on the Ambika according to Mutable Instruments' documentation http://mutable-instruments.net/ambika/manual.
+
+I also provide 6 .syx preset files to be uploaded to the BCR. Each one corresponds to a part number and an associated midi channel e.g. Ambika-BCR-p1-ch5.syx is for part 1 on midi channel 5. In order to suit your needs, you might tweak one of the first lines in the Makefile and run 'make' in a Terminal.
+
+To upload the .syx files on the BCR, I use 'Sysex Librarian' on my Mac, with BCR connected on the Mac through USB:
+	on the BCR, switch to U1 mode (edit+learn+encoder1),
+	on the Mac, choose BCR as receiver, upload the sysex
+	on the BCR, store it on a preset (store, choose preset, store).
+
+Do that for each sysex file. Switch back to S4 on the BCR.
+(The BCR should be set to "S4" mode to avoid midi loops.)
+
+The code is based Mutable Instrument's code and is thus GPL3.0. The modifications I made are in the (provided) storage .h and .cc files.
+More specifically, the provided firwmare is modified YAM version: https://github.com/bjoeri/ambika.
+Still, it should work with any versions of the firmware as long as the storage.* files are original (which is the case in Mutable and Live! version from TijuanaKez).

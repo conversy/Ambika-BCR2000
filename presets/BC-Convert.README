@@ -1,0 +1,50 @@
+BC-Convert version 0.3 (C) 2006 Michael Kukat
+
+File Version: $Id: BC-Convert.README,v 1.2 2006/12/23 15:31:22 michael Exp $
+
+WARNING!
+
+This program is not really tested very much currently. No warranty, use on your
+own risk, this program is provided as-is and currently not finished.
+
+On Windows, SysEx streaming from stdin doesn't work due to the stdin handling
+on this platform. You have to read SysEx from files on Windows. Streaming text
+files from stdin works correctly, as long as they don't contain ^Z.
+
+Keep care, you can at least ruin your patches in the BCR if you don't know what
+you are doing. I strongly recommend that you create a backup of your BCR
+configuration and keep it in a safe place before playing around with this tool.
+
+For the usage:
+
+This is a command line utility, so first open your command prompt. Then, you
+can convert your files in both directions, either from SysEx to text or from
+text to SysEx. Usually, the direction is auto-detected by checking the first
+character of the input file.
+
+For a list of options, run the command with the "-h" option, like
+./bc-convert -h
+on MacOS/Unix or
+bc-convert -h
+on Windows
+
+When converting a dump from SysEx to text, a comment is first inserted into
+the resulting text file telling you the device and manufacturer ID of the
+SysEx source file. When you create a SysEx file from your edited text file,
+it is a good idea to use the same values using the -d and -m options to
+bc-convert. By default, 127/127 is used, which seems to be default on many
+dumps.
+
+You can include comments and blank lines in your text file, the handling is as
+follows, as the B-Control doesn't know about comments (i think):
+
+Any text starting with ";" or "#" is stripped off, including leading
+whitespaces down to the last character of the line. So trailing whitespace in
+a command (or a blank line) is also removed. Then, if some chars are left over
+after this cleaning procedure, the line is sent as a block to your SysEx file.
+
+I discourage using ";" for comments, as this will be removed somewhen. We
+don't really need two different comment markers.
+
+Have fun with this tool. If you found a bug, drop me a note to
+michael "-at-" kukat "-dot-" de
