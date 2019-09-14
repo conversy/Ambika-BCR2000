@@ -22,5 +22,5 @@ Do that for each sysex file. Switch back to S4 on the BCR.
 (The BCR should be set to "S4" mode to avoid midi loops.)
 
 The firmware code is based on Mutable Instrument's and is thus GPL3.0. The modifications I made are in the (provided) storage .h and .cc files.
-More specifically, the provided firwmare is modified YAM version: https://github.com/bjoeri/ambika.
-Still, it should work with any version of the firmware as long as the storage.* files are original (which is the case in Mutable and Live! version from TijuanaKez).
+More specifically, the provided firwmare is a modified YAM version: https://github.com/bjoeri/ambika.
+Still, it should work with any version of the firmware as long as the storage.* files are original (which is the case with Mutable, YAM and Live! version from TijuanaKez).
