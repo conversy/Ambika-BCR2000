@@ -14,7 +14,7 @@ The specific firmware (Ambika-AllCC-Firmware.bin) should be uploaded on the Ambi
 I also provide 6 .syx preset files to be uploaded to the BCR. Each one corresponds to a part number and an associated midi channel e.g. Ambika-BCR-p1-ch5.syx is for part 1 on midi channel 5. In order to suit your needs, you might tweak one of the first lines in the Makefile and run 'make' in a Terminal.
 
 To upload the .syx files on the BCR, I use 'Sysex Librarian' on my Mac, with BCR connected on the Mac through USB:
-	on the BCR, switch to U1 mode (edit+learn+encoder1),
+	on the BCR, switch to U1 mode (edit+store+encoder1),
 	on the Mac, choose BCR as receiver, upload the sysex
 	on the BCR, store it on a preset (store, choose preset, store).
 
